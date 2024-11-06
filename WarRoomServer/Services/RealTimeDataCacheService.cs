@@ -1,6 +1,7 @@
 ﻿
 using AGVSystemCommonNet6.DATABASE;
 using AGVSystemCommonNet6.Equipment;
+using AGVSystemCommonNet6.Equipment.AGV;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;

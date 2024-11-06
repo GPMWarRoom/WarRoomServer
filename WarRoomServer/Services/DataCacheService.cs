@@ -1,5 +1,6 @@
 ﻿using AGVSystemCommonNet6.DATABASE;
 using AGVSystemCommonNet6.Equipment;
+using AGVSystemCommonNet6.Equipment.AGV;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;

@@ -2,6 +2,9 @@
 using WarRoomServer.Hubs;
 using WarRoomServer.Services;
 
+
+Console.Title = "War room backend_beta 1.0";
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -25,7 +28,11 @@ builder.Services.AddSignalR().AddJsonProtocol(options =>
 {
     options.PayloadSerializerOptions.PropertyNamingPolicy = null;
 });
-
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = null;
+    });
 
 builder.Services.AddMemoryCache();
 string _connectionString = builder.Configuration.GetValue<string>("ConnectionStrings:Default");
@@ -33,6 +40,7 @@ builder.Services.AddSqlServer<WarRoomDbContext>(_connectionString); // 注入資
 builder.Services.AddScoped<DataCacheService>();
 //builder.Services.AddHostedService<DataBaseMigrateService>(); // 開發時使用，不要在生產環境使用
 builder.Services.AddHostedService<RealTimeDataCacheService>(); // Realtime 數據緩存服務
+builder.Services.AddScoped<VersionService>();
 
 var app = builder.Build();
 
@@ -51,6 +59,7 @@ app.UseCors("AllowAll");
 
 app.MapHub<TestHub>("/Test");
 app.MapHub<EquipmentStatusHub>("/EquipmentStatus");
+app.MapHub<FieldStatusHub>("/FieldStatus");
 
 app.Run();
 

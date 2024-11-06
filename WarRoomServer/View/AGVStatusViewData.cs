@@ -1,4 +1,5 @@
 ﻿using AGVSystemCommonNet6.Equipment;
+using AGVSystemCommonNet6.Equipment.AGV;
 
 namespace WarRoomServer.View
 {
